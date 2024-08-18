@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { getApiResource } from "../../utils/netwrok";
-import { API_PRODUCTS } from "../../constants/api";
-import ProductsList from "../../components/ProductsList/ProductsList";
-
+import { API_PRODUCTS } from "@constants/api";
+import ProductsList from "@components/ProductsList/ProductsList";
+import { getApiResource } from "@utils/netwrok";
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
   const getRecource = async (url) => {

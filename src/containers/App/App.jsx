@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./App.module.css";
-import HomePage from "../HomePage/HomePage";
+
 import { Route, Routes } from "react-router-dom";
-import AllProducts from "../AllProducts/AllProducts";
-import Header from "../../components/Header/Header";
-import ProductPage from "../ProductPage/ProductPage";
+import HomePage from "@containers/HomePage/HomePage";
+import AllProducts from "@containers/AllProducts/AllProducts";
+import Header from "@components/Header/Header";
+import ProductPage from "@containers/ProductPage/ProductPage";
 
 function App() {
   return (
