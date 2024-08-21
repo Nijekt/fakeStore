@@ -6,6 +6,8 @@ import HomePage from "@containers/HomePage/HomePage";
 import AllProducts from "@containers/AllProducts/AllProducts";
 import Header from "@components/Header/Header";
 import ProductPage from "@containers/ProductPage/ProductPage";
+import CartPage from "@containers/CartPage/CartPage";
+import SearchPage from "@containers/SearchPage/SearchPage";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/all" element={<AllProducts />} />
         <Route path="/people/:id" element={<ProductPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/search" element={<SearchPage />} />
       </Routes>
     </div>
   );

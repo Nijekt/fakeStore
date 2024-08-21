@@ -3,6 +3,10 @@
   list-style: none;
   gap: 30px;
 }
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
 .nav__item {
   font-size: var(--font-size-medium);
   text-shadow: var(--text-shadow-yellow);

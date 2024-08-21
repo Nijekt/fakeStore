@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./ProductsList.module.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 const ProductsList = ({ products }) => {
+  const { id } = useParams();
   return (
     <ul className={styles.container}>
       {products.map(({ title, price, image, id }) => (

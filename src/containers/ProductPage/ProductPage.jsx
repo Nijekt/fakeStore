@@ -5,7 +5,6 @@ import { getApiResource } from "../../utils/netwrok";
 import { API_PRODUCTS } from "../../constants/api";
 import { useDispatch, useSelector } from "react-redux";
 import { removerProductTOCart, setProductTOCart } from "@store/actions";
-import HandleToCarte from "@components/ProductPage/HandleToCarte/HandleToCarte";
 const ProductPage = () => {
   const [productInfo, setProductInfo] = useState([]);
   const [productImg, setProductImg] = useState(null);
@@ -36,6 +35,7 @@ const ProductPage = () => {
         console.log("Error");
       }
     })();
+    console.log(productInCart);
   }, []);
   // const handleAddToCart = () => {
   //   const product = {
@@ -72,6 +72,8 @@ const ProductPage = () => {
   };
 
   useEffect(() => {
+    const isProductInCart = cartState.items.some((item) => item.id === id);
+    setProductInCart(isProductInCart);
     console.log("Текущее состояние корзины:", cartState);
   }, [cartState]);
   return (
@@ -86,9 +88,9 @@ const ProductPage = () => {
           </li>
         ))}
       </ul>
-      <HandleToCarte onClick={handleToggleCart} />
-      {/* <button onClick={handleAddToCart}>Добавить в корзину</button>
-      <button onClick={handleRemoveFromCart}>Удалить с корзины</button> */}
+      <button onClick={handleToggleCart}>
+        {productInCart ? "Удалить из корзины" : "Добавить в корзину"}
+      </button>
     </>
   );
 };
