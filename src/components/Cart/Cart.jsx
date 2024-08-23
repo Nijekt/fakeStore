@@ -13,7 +13,7 @@ const Cart = () => {
     setCount(length);
   });
   return (
-    <div>
+    <div className={styles.wrapper}>
       <Link to="./cart">
         <span className={styles.counter}>{count}</span>
         <img className={styles.img} src={imgCart} alt="" />

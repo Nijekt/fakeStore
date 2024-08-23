@@ -8,9 +8,7 @@ const CartPage = () => {
   useEffect(() => {
     console.log(cartState);
   });
-  return (
-    <div>{cartState && <CartProductsList products={cartState.items} />}</div>
-  );
+  return <>{cartState && <CartProductsList products={cartState.items} />}</>;
 };
 
 export default CartPage;

@@ -1,3 +1,20 @@
+.wrapper {
+  position: relative;
+}
+
 .img {
   width: 35px;
+}
+.counter {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background-color: var(--color-white);
+  border: 0.4px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  bottom: 0;
+  right: 0;
 }

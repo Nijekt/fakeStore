@@ -8,11 +8,17 @@
 
   --color-white: #ffff;
 
+  --color-black: #000;
+
   --color-darkgray: #353f43;
 
   --color-yellow: #ff0;
 
   --color-blue: #6a83fb;
+
+  --color-lightgray: #dfdfdf;
+
+  --spacing-largest: 120px;
 
   --spacing-large: 30px;
 
@@ -23,6 +29,8 @@
   --font-family-main: sans-serif;
 
   --font-bold: 600;
+
+  --font-size-small: 14px;
 
   --font-size-main: 16px;
 
@@ -49,6 +57,7 @@ body {
   background-color: var(--theme-default);
   font-size: var(--font-size-main);
   font-family: var(--font-family-main);
+  height: 100%;
 }
 
 .header__text {
@@ -56,4 +65,10 @@ body {
   font-size: var(--font-size-header);
   color: var(--color-darkgray);
   transition: color var(--transition);
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
 }

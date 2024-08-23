@@ -4,12 +4,15 @@ import {
   DECREASE_QUANTITY,
   INCREASE_QUANTITY,
 } from "@store/constants/actions_type";
+import { getLocalStorage } from "@utils/localStorage";
 
 const initialState = {
-  items: [],
+  items: getLocalStorage("store") || [],
 };
 
 export const cartReduceer = (state = initialState, action) => {
+  let updateItems;
+
   switch (action.type) {
     case ADD_TO_CART:
       return {
@@ -18,41 +21,46 @@ export const cartReduceer = (state = initialState, action) => {
       };
 
     case REMOVE_FROM_CART:
+      updateItems = state.items.filter((item) => item.id !== action.payload.id);
       return {
         ...state,
-        items: state.items.filter((item) => item.id !== action.payload.id),
+        items: updateItems,
       };
+
     case DECREASE_QUANTITY:
       const finditemIndex = state.items.findIndex(
         (item) => item.id === action.payload.id
       );
 
       if (finditemIndex !== -1) {
-        const updateItems = [...state.items];
+        updateItems = [...state.items];
         if (updateItems[finditemIndex].quantity > 1) {
           updateItems[finditemIndex].quantity -= 1;
-          return {
-            ...state,
-            item: updateItems,
-          };
         } else {
-          return {
-            ...state,
-            items: state.items.filter((item) => item.id !== action.payload.id),
-          };
+          updateItems = updateItems.filter(
+            (item) => item.id !== action.payload.id
+          );
         }
+        return {
+          ...state,
+          items: updateItems,
+        };
       }
+      break;
 
     case INCREASE_QUANTITY:
       const findItemIndex = state.items.findIndex(
         (item) => item.id === action.payload.id
       );
-      const updateItems = [...state.items];
-      updateItems[findItemIndex].quantity += 1;
-      return {
-        ...state,
-        items: updateItems,
-      };
+      if (findItemIndex !== -1) {
+        updateItems = [...state.items];
+        updateItems[findItemIndex].quantity += 1;
+        return {
+          ...state,
+          items: updateItems,
+        };
+      }
+      break;
 
     default:
       return state;

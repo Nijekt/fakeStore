@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styles from "./ProductPage.module.css";
+import classNames from "classnames";
 import { useParams } from "react-router-dom";
 import { getApiResource } from "../../utils/netwrok";
 import { API_PRODUCTS } from "../../constants/api";
 import { useDispatch, useSelector } from "react-redux";
 import { removerProductTOCart, setProductTOCart } from "@store/actions";
+import Button from "@components/UiComponents/Button/Button";
 const ProductPage = () => {
   const [productInfo, setProductInfo] = useState([]);
   const [productImg, setProductImg] = useState(null);
@@ -22,13 +24,14 @@ const ProductPage = () => {
         setProductInfo([
           { title: "Name", data: res.title, id: res.id },
           { title: "About", data: res.description, id: res.id },
-          { title: "Price", data: res.price, id: res.id },
+          { title: "Category", data: res.category, id: res.id },
+
           {
             title: "Rate",
             data: `Rate: ${res.rating.rate}, Count: ${res.rating.count}`,
             id: res.id,
           },
-          { title: "Category", data: res.category, id: res.id },
+          { title: "Price", data: res.price, id: res.id },
         ]);
         setProductImg(res.image);
       } else {
@@ -63,7 +66,7 @@ const ProductPage = () => {
       const product = {
         id,
         title: productInfo[0]?.data,
-        price: productInfo[2]?.data,
+        price: productInfo[4]?.data,
         image: productImg,
       };
       dispatch(setProductTOCart(product));
@@ -76,22 +79,47 @@ const ProductPage = () => {
     setProductInCart(isProductInCart);
     console.log("Текущее состояние корзины:", cartState);
   }, [cartState]);
+
+  const getClassName = (title) => {
+    switch (title) {
+      case "Name":
+        return styles.product__title;
+      case "About":
+        return styles.product__description;
+      case "Category":
+        return styles.product__category;
+      case "Rate":
+        return styles.product__rate;
+      case "Price":
+        return styles.product__price;
+      default:
+        return "";
+    }
+  };
   return (
-    <>
-      <img src={productImg} alt="" />
-      <ul>
-        {productInfo.map(({ title, data }, id) => (
-          <li key={id}>
-            <span>
-              {title} : {data}
-            </span>
-          </li>
-        ))}
-      </ul>
-      <button onClick={handleToggleCart}>
-        {productInCart ? "Удалить из корзины" : "Добавить в корзину"}
-      </button>
-    </>
+    <div className={styles.container}>
+      <img src={productImg} alt="" className={styles.img} />
+      <div className={styles.inforamtion__wrapper}>
+        <ul className={styles.info__list}>
+          {productInfo.map(({ title, data }, id) => (
+            <li
+              key={id}
+              className={classNames(styles.info__item, getClassName(title))}
+            >
+              {title === "Price"
+                ? `${title}: ${data}$`
+                : title === "Category"
+                ? `${title}: ${data}`
+                : data}
+            </li>
+          ))}
+        </ul>
+
+        <Button onClick={handleToggleCart} classes={styles.button}>
+          {!productInCart ? "Add to cart" : "Delete from cart"}
+        </Button>
+      </div>
+    </div>
   );
 };
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./SearchPage.module.css";
 import { getApiResource } from "@utils/netwrok";
 import { API_PRODUCTS } from "@constants/api";
+import SearchPageInfo from "@components/SearchPage/SearchPageInfo/SearchPageInfo";
 const SearchPage = () => {
   const [inputSearchValue, setInputSearhgValue] = useState("");
   const [allProducts, setAllProducts] = useState([]);
@@ -27,26 +28,18 @@ const SearchPage = () => {
     console.log(filteredProducts);
   }, [inputSearchValue]);
   return (
-    <div>
-      <h1>Search</h1>
+    <div className={styles.wrapper}>
+      <h1 className="header__text">Search</h1>
       <input
+        className={styles.input}
         type="text"
         value={inputSearchValue}
         onChange={handleInputChange}
       />
-      <ul>
-        {inputSearchValue == "" ? (
-          <p>Start your searching</p>
-        ) : (
-          filteredProducts.map(({ title, price, id, image }) => (
-            <li key={id}>
-              <img src={image} alt="img" />
-              {title}
-              {price}
-            </li>
-          ))
-        )}
-      </ul>
+      <SearchPageInfo
+        inputSearchValue={inputSearchValue}
+        filteredProducts={filteredProducts}
+      />
     </div>
   );
 };

@@ -15,17 +15,34 @@
 .nav__item a {
   display: flex;
   min-width: 80px;
-  padding: var(--spacing-small) 0;
+  padding: var(--spacing-small) var(--spacing-small);
   justify-content: center;
   font-weight: var(--font-bold);
   text-decoration: none;
   color: var(--color-darkgray);
   border: var(--border) solid transparent;
   border-radius: var(--border);
+  transition: all 0.3s ease;
+}
+
+.nav__item a:hover {
+  animation: blinkBorder 2.5s infinite;
+}
+@keyframes blinkBorder {
+  0% {
+    border-color: var(--color-darkgray);
+  }
+  50% {
+    border-color: transparent;
+  }
+  100% {
+    border-color: var(--color-darkgray);
+  }
 }
 
 .nav__item :global(a.active) {
   border: var(--border) solid var(--color-darkgray);
   transition: var(--transition);
   text-shadow: none;
+  animation: none;
 }

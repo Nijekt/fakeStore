@@ -1,8 +1,9 @@
 import React, { useEffect, useReducer } from "react";
 import styles from "./CartProductsList.module.css";
-import { useParams, Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { decreaseQuantity, increaseQuantity } from "@store/actions";
+import Button from "@components/UiComponents/Button/Button";
 const CartProductsList = ({ products }) => {
   const dispatch = useDispatch();
 
@@ -13,24 +14,51 @@ const CartProductsList = ({ products }) => {
     dispatch(decreaseQuantity(id));
   };
 
+  const sumPrice = products.reduce((acc, products) => {
+    return products.price * products.quantity + acc;
+  }, 0);
+
   return (
-    <div>
-      <ul className={styles.container}>
-        {products.map(({ title, price, image, id, quantity }) => (
-          <li key={title} className={styles.list__item}>
-            <Link to={`/people/${id}`}>
-              <img src={image} alt={title} className={styles.item__img} />{" "}
-            </Link>{" "}
-            <div>
-              <button onClick={() => handleIncrease(id)}>+</button> {quantity}{" "}
-              <button onClick={() => handleDecrease(id)}>-</button>
+    <>
+      {products.length == 0 ? (
+        <div className={styles.cart__message}>Cart is Empty</div>
+      ) : (
+        <>
+          {" "}
+          <ul className={styles.container}>
+            {products.map(({ title, price, image, id, quantity }) => (
+              <li key={title} className={styles.list__item}>
+                <Link to={`/products/${id}`}>
+                  <img src={image} alt={title} className={styles.item__img} />{" "}
+                </Link>{" "}
+                <p className={styles.item__description}>{title}</p>{" "}
+                <div className={styles.item__price}>
+                  {Number(price * quantity).toFixed(2)}
+                </div>
+                <div className={styles.quantity__changer}>
+                  <Button
+                    onClick={() => handleDecrease(id)}
+                    classes={styles.button}
+                  >
+                    -
+                  </Button>
+                  {quantity}
+                  <Button
+                    onClick={() => handleIncrease(id)}
+                    classes={styles.button}
+                  >
+                    +
+                  </Button>
+                </div>
+              </li>
+            ))}
+            <div className={styles.total__price}>
+              Total Price: ${Number(sumPrice).toFixed(2)}
             </div>
-            <div className={styles.item__price}>{price}</div>
-            <p className={styles.item__description}>{title}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+          </ul>
+        </>
+      )}
+    </>
   );
 };
 

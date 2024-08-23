@@ -1,0 +1,18 @@
+.wrapper {
+  text-align: center;
+}
+.input {
+  width: 220px;
+  height: 30px;
+  font-size: var(--font-size-medium);
+  border: var(--border) solid var(--color-lightgray);
+  border-radius: var(--border);
+}
+
+.input:hover {
+  border: var(--border) solid var(--color-lightgray);
+}
+.input:focus {
+  border: var(--border) solid var(--color-lightgray);
+  outline: none;
+}
