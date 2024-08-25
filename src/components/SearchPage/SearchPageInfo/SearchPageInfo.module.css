@@ -13,11 +13,11 @@
   border: var(--border) solid var(--color-lightgray);
   border-radius: 25px;
   font-size: var(--font-size-small);
-  color: var(--color-darkgray);
+  color: var(--color-standart);
 }
 .list__item a {
   text-decoration: none;
-  color: var(--color-darkgray);
+  color: var(--color-standart);
   font-weight: var(--font-bold);
   display: flex;
   justify-content: center;

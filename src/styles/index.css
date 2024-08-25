@@ -52,18 +52,25 @@ img {
 }
 
 body {
+  --color-standart: var(--color-darkgray);
   font-size: var(--font-size-main);
   font-family: var(--font-family-main);
   background-color: var(--theme-default);
   font-size: var(--font-size-main);
   font-family: var(--font-family-main);
   height: 100%;
+
+  color: var(--color-standart);
+}
+
+body.texture {
+  --color-standart: #7e0000;
 }
 
 .header__text {
   line-height: 1.7;
   font-size: var(--font-size-header);
-  color: var(--color-darkgray);
+  color: var(--color-standart);
   transition: color var(--transition);
 }
 

@@ -11,6 +11,7 @@ export default defineConfig({
       "@store": "/src/store",
       "@containers": "/src/containers",
       "@utils": "/src/utils",
+      "@context": "/src/context",
     },
   },
 });

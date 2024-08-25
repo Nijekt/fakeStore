@@ -6,7 +6,8 @@
         "@constants/*": ["constants/*"],
         "@store/*": ["store/*"],
         "@containers/*": ["containers/*"],
-        "@utils/*": ["utils/*"]
+        "@utils/*": ["utils/*"],
+        "@context/*": ["context/*"]
       }
     }
   }
