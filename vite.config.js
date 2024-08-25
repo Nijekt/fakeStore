@@ -12,6 +12,7 @@ export default defineConfig({
       "@containers": "/src/containers",
       "@utils": "/src/utils",
       "@context": "/src/context",
+      "@static": "/src/static",
     },
   },
 });

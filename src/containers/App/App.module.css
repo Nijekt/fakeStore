@@ -1,7 +1,15 @@
 .app__wrapper {
+  display: flex;
+  flex-direction: column;
   max-width: var(--max-width);
   margin: 0 auto;
   padding: var(--spacing-large) 0;
+  min-height: 100vh;
+  position: relative;
+}
+
+.app__content {
+  flex: 1;
 }
 
 @media screen and (max-width: 1440px) {
