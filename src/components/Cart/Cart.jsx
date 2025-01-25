@@ -22,7 +22,7 @@ const Cart = () => {
         <img
           className={styles.img}
           src={theme === "texture" ? imgCartRed : imgCart}
-          alt=""
+          alt="adskasg"
         />
       </Link>
     </div>
